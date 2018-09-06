@@ -1,15 +1,70 @@
 {
   "name": "parse-picks",
   "version": "1.0.0",
-  "description": "",
+  "description": "Parses webpage from 4nfl picks",
   "main": "index.js",
+  "repository": {
+    "type": "Github",
+    "url": "git@github.com:bduff9/parse-picks.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --fix \"**/*.mjs\"",
+    "start": "node --experimental-modules index.mjs",
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "request": "^2.88.0"
+    "cheerio": "1.0.0-rc.2",
+    "request": "2.88.0",
+    "request-promise-native": "1.0.5"
+  },
+  "devDependencies": {
+    "ajv": "6.5.3",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "1.7.0",
+    "coveralls": "^3.0.2",
+    "eslint": "5.5.0",
+    "jest": "23.5.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.?(m)js?(x)",
+      "**/?(*.)(spec|test).?(m)js?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      "node",
+      "mjs"
+    ],
+    "transform": {
+      "^.+\\.m?js$": "babel-jest"
+    }
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "modules": false
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "transform-es2015-modules-commonjs",
+            {
+              "spec": true
+            }
+          ]
+        ]
+      }
+    }
   }
 }
