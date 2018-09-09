@@ -36,6 +36,7 @@ async function parsePicks () {
 		renderOutput(allPicks, week);
 	} catch (error) {
 		console.error('Error on getting HTML', error);
+		spinner.stop(true);
 
 		return;
 	}
