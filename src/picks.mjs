@@ -48,6 +48,8 @@ export const getAllPicks = $ => {
 		}
 	});
 
+	if (allPicks.length === 0) console.warn('No picks found');
+
 	return allPicks;
 };
 

@@ -1,4 +1,4 @@
-import { PICK_URL } from './constants';
+import { getSpinner, PICK_URL } from './constants';
 
 describe('PICK_URL', () => {
 	it('has a url', () => {
@@ -11,5 +11,11 @@ describe('PICK_URL', () => {
 
 	it('has a transform function that returns a cheerio object', () => {
 		expect(PICK_URL.transform('')).toBeDefined();
+	});
+});
+
+describe('getSpinner', () => {
+	it('returns a spinner', () => {
+		expect(getSpinner()).toBeDefined();
 	});
 });

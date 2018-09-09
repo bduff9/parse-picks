@@ -1,4 +1,13 @@
 import cheerio from 'cheerio';
+import Spinner from 'cli-spinner';
+
+export const getSpinner = () => {
+	const spinner = new Spinner.Spinner();
+
+	spinner.setSpinnerString(26);
+
+	return spinner;
+};
 
 export const PICK_URL = {
 	url: 'http://www.4nflpicks.com/poolpicks.html',

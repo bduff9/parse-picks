@@ -13,6 +13,8 @@ export const getWeek = $ => {
 		if (week) return false;
 	});
 
+	if (!week) console.warn('Failed to get week');
+
 	return week;
 };
 
