@@ -3,8 +3,8 @@ languages:
 - name: javascript
   production:
     include:
-      - /src/*.mjs
-      - index.mjs
+      - .*/src/.*\.mjs
+      - .*/index\.mjs
   test:
     include:
-      - /src/*.test.mjs
+      - .*/src/.*\.test\.mjs
