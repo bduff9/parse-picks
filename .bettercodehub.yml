@@ -1,0 +1,10 @@
+component_depth: 1
+languages:
+- javascript
+  production:
+    include:
+      - /src/*.mjs
+      - index.mjs
+  test:
+    include:
+      - /src/*.test.mjs
