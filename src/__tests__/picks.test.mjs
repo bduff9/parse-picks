@@ -1,4 +1,4 @@
-import { getGameCount, getPeople, getPickCount, parsePickFromText } from './picks';
+import { getGameCount, getPeople, getPickCount, parsePickFromText } from '../picks';
 
 describe('getGameCount', () => {
 	it('returns a valid value', () => {

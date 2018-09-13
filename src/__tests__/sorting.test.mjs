@@ -1,4 +1,4 @@
-import { sortPicks } from './sorting';
+import { sortPicks } from '../sorting';
 
 describe('sortPicks', () => {
 	const obj1 = { points: 12, picked: 4, average: 3 };

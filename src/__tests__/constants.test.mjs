@@ -1,4 +1,4 @@
-import { getSpinner, PICK_URL } from './constants';
+import { getSpinner, PICK_URL } from '../constants';
 
 describe('PICK_URL', () => {
 	it('has a url', () => {
