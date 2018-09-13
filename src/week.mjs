@@ -3,7 +3,7 @@ import { WEEK_REGEX } from './constants';
 export const getWeek = $ => {
 	let week = 0;
 
-	$('td').each(function (i, el) {
+	$('td').each((i, el) => {
 		const $td = $(el);
 
 		if ($td.find('td').length) return;

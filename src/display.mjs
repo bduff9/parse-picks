@@ -1,5 +1,4 @@
 import { LINE_SEP } from './constants';
-import { getPickMetadata } from './picks';
 
 export const padValue = (value, length, padFront = false, padChar = ' ') => {
 	value = value.toString();
@@ -9,8 +8,9 @@ export const padValue = (value, length, padFront = false, padChar = ' ') => {
 	return value.padEnd(length, padChar);
 };
 
-export const renderOutput = (allPicks, week) => {
-	let { gameCt, people, picks } = getPickMetadata(allPicks);
+export const renderOutput = ({ allPicks, metadata, week }) => {
+	const { gameCt, people, picks } = metadata;
+	let currentGame = gameCt;
 
 	console.log(LINE_SEP);
 	console.log(`${picks} total picks (by ${people} people) in week ${week} for ${gameCt} total games`);
@@ -19,10 +19,10 @@ export const renderOutput = (allPicks, week) => {
 	allPicks.forEach(teamObj => {
 		const { team, points, picked, average } = teamObj;
 
-		if (gameCt < 0) return;
+		if (currentGame < 0) return;
 
-		if (gameCt == 0) console.log(LINE_SEP);
+		if (currentGame == 0) console.log(LINE_SEP);
 
-		console.log(`${padValue(gameCt--, 2, true)}. ${padValue(team, 3)} - ${padValue(points, 2, true)} points by ${picked} people for an average of ${padValue(average.toFixed(2), 5, true)} points per person`);
+		console.log(`${padValue(currentGame--, 2, true)}. ${padValue(team, 3)} - ${padValue(points, 2, true)} points by ${picked} people for an average of ${padValue(average.toFixed(2), 5, true)} points per person`);
 	});
 };

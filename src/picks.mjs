@@ -1,4 +1,35 @@
-import { PICK_REGEX } from './constants';
+import { getSpinner, PICK_REGEX } from './constants';
+import { sortPicks } from './sorting';
+import { getWeek } from './week';
+
+export const parsePicks = $ => {
+	const spinner = getSpinner();
+	const pickObj = {};
+	let week;
+	let allPicks;
+
+	if (!$) return;
+
+	spinner.setSpinnerTitle('Scraping HTML...');
+
+	week = getWeek($);
+
+	if (!week) return spinner.stop(true);
+
+	pickObj.week = week;
+
+	allPicks = getAllPicks($);
+
+	if (allPicks.length === 0) return spinner.stop(true);
+
+	pickObj.allPicks = allPicks.slice().sort(sortPicks);
+
+	spinner.stop(true);
+
+	pickObj.metadata = getPickMetadata(allPicks);
+
+	return pickObj;
+};
 
 export const parsePickFromText = text => {
 	const pickResult = PICK_REGEX.exec(text);
@@ -18,7 +49,7 @@ export const getAllPicks = $ => {
 	const allPicks = [];
 	let found;
 
-	$('td').each(function (i, el) {
+	$('td').each((i, el) => {
 		const $td = $(el);
 
 		if ($td.find('td').length) return;
