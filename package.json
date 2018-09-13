@@ -10,7 +10,9 @@
   "scripts": {
     "lint": "eslint --fix \"**/*.mjs\"",
     "start": "node --experimental-modules index.mjs",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls"
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "coverage": "jest --collectCoverageFrom=src/**.mjs --coverage src",
+    "watch": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
@@ -28,7 +30,8 @@
     "babel-preset-env": "1.7.0",
     "coveralls": "3.0.2",
     "eslint": "5.5.0",
-    "jest": "23.6.0"
+    "jest": "23.6.0",
+    "jest-mock-console": "^0.4.0"
   },
   "jest": {
     "testMatch": [
