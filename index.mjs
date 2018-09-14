@@ -4,9 +4,11 @@ import { renderOutput } from './src/display';
 import { downloadHTML } from './src/download';
 import { parsePicks } from './src/picks';
 
-(async () => {
+export const main = async () => {
 	const $ = await downloadHTML(request);
 	const pickObj =	parsePicks($);
 
 	renderOutput(pickObj);
-})();
+};
+
+main();
