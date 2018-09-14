@@ -22,6 +22,7 @@ describe('parsePicks', () => {
 	});
 
 	it('calls $ 4 times with no picks passed', () => {
+		const restoreConsole = mockConsole();
 		const $ = cheerio.load(`
 <table>
 	<tr>
@@ -34,6 +35,9 @@ describe('parsePicks', () => {
 		parsePicks(mock$);
 
 		expect(mock$).toHaveBeenCalledTimes(4);
+		expect(console.warn).toHaveBeenCalledTimes(1);
+
+		restoreConsole();
 	});
 
 	it('returns correct onject with valid HTML', () => {
