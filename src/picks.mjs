@@ -47,7 +47,6 @@ export const parsePickFromText = text => {
 
 export const getAllPicks = $ => {
 	const allPicks = [];
-	let found;
 
 	$('td').each((i, el) => {
 		const $td = $(el);
@@ -56,26 +55,25 @@ export const getAllPicks = $ => {
 
 		const text = $td.text().trim();
 		const { isPick, points, team } = parsePickFromText(text);
+		let found = false;
 
-		if (isPick) {
-			found = false;
+		if (!isPick) return;
 
-			// Search list for team
-			allPicks.forEach(teamObj => {
-				if (teamObj.team !== team) return;
+		// Search list for team
+		allPicks.forEach(teamObj => {
+			if (teamObj.team !== team) return;
 
-				found = true;
-				teamObj.points += points;
-				teamObj.picked += 1;
-				teamObj.average = teamObj.points / teamObj.picked;
-			});
+			found = true;
+			teamObj.points += points;
+			teamObj.picked += 1;
+			teamObj.average = teamObj.points / teamObj.picked;
+		});
 
-			// Otherwise add it
-			if (!found) {
-				let newTeam = { team, points, picked: 1, average: points };
+		// Otherwise add it
+		if (!found) {
+			let newTeam = { team, points, picked: 1, average: points };
 
-				allPicks.push(newTeam);
-			}
+			allPicks.push(newTeam);
 		}
 	});
 
