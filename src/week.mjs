@@ -1,4 +1,4 @@
-import { WEEK_REGEX } from './constants';
+import { WEEK_REGEX } from './constants.mjs';
 
 export const getWeek = $ => {
 	let week = 0;

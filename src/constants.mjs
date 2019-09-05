@@ -19,6 +19,6 @@ export const PICK_URL = {
 
 export const WEEK_REGEX = /Wk.(\d{1,2}).*/g;
 
-export const PICK_REGEX = /\.(\d{1,2})\s+-\s+(\D{2,3})/;
+export const PICK_REGEX = /^\.(\d{1,2})\s+-\s+(\D{2,3})$/;
 
 export const LINE_SEP = '--------------------------------------------------------------------------';

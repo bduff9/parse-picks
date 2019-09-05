@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint --fix \"**/*.mjs\"",
-    "start": "node --experimental-modules index.mjs",
+    "start": "NODE_MODULES=\"\" node --experimental-modules index.mjs",
     "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "coverage": "jest --collectCoverageFrom=src/**.mjs --coverage src",
     "watch": "jest --watchAll"
@@ -17,21 +17,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "1.0.0-rc.2",
-    "cli-spinner": "^0.2.8",
+    "cheerio": "1.0.0-rc.3",
+    "cli-spinner": "0.2.10",
     "request": "2.88.0",
-    "request-promise-native": "1.0.5"
+    "request-promise-native": "1.0.7"
   },
   "devDependencies": {
-    "ajv": "6.5.4",
+    "ajv": "6.10.2",
     "babel-core": "6.26.3",
-    "babel-jest": "23.6.0",
+    "babel-jest": "24.9.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "babel-preset-env": "1.7.0",
-    "coveralls": "3.0.2",
-    "eslint": "5.7.0",
-    "jest": "23.6.0",
-    "jest-mock-console": "0.4.0"
+    "coveralls": "3.0.6",
+    "eslint": "6.3.0",
+    "jest": "24.9.0",
+    "jest-mock-console": "1.0.0"
   },
   "jest": {
     "testMatch": [

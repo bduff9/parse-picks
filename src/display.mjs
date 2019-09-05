@@ -1,4 +1,4 @@
-import { LINE_SEP } from './constants';
+import { LINE_SEP } from './constants.mjs';
 
 export const padValue = (value, length, padFront = false, padChar = ' ') => {
 	value = value.toString();

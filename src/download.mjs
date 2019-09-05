@@ -1,4 +1,4 @@
-import { getSpinner, PICK_URL } from './constants';
+import { getSpinner, PICK_URL } from './constants.mjs';
 
 export const downloadHTML = async request => {
 	const spinner = getSpinner();

@@ -1,6 +1,6 @@
-import { getSpinner, PICK_REGEX } from './constants';
-import { sortPicks } from './sorting';
-import { getWeek } from './week';
+import { getSpinner, PICK_REGEX } from './constants.mjs';
+import { sortPicks } from './sorting.mjs';
+import { getWeek } from './week.mjs';
 
 export const parsePicks = $ => {
 	const spinner = getSpinner();
@@ -47,8 +47,31 @@ export const parsePickFromText = text => {
 
 export const getAllPicks = $ => {
 	const allPicks = [];
+	let $wrapper = null;
 
-	$('td').each((i, el) => {
+	$('table').each((_, tableEl) => {
+		const $table = $(tableEl);
+
+		if ($table.find('table').length) return;
+
+		$table.find('td').each((_, tdEl) => {
+			const $td = $(tdEl);
+			const text = $td.text().trim();
+			const { isPick } = parsePickFromText(text);
+
+			if (isPick) console.log({ text });
+
+			if (isPick) {
+				$wrapper = $table.parent('div');
+
+				return false;
+			}
+		});
+
+		if ($wrapper !== null) return false;
+	});
+
+	$wrapper.find('td').each((_, el) => {
 		const $td = $(el);
 
 		if ($td.find('td').length) return;
@@ -58,6 +81,7 @@ export const getAllPicks = $ => {
 		let found = false;
 
 		if (!isPick) return;
+		console.log({ text });
 
 		// Search list for team
 		allPicks.forEach(teamObj => {
@@ -78,7 +102,7 @@ export const getAllPicks = $ => {
 	});
 
 	if (allPicks.length === 0) console.warn('No picks found');
-
+	console.log({ allPicks });
 	return allPicks;
 };
 
