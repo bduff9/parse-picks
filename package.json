@@ -12,7 +12,9 @@
     "start": "NODE_MODULES=\"\" node --experimental-modules index.mjs",
     "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "coverage": "jest --collectCoverageFrom=src/**.mjs --coverage src",
-    "watch": "jest --watchAll"
+    "watch": "jest --watchAll",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +22,8 @@
     "cheerio": "1.0.0-rc.3",
     "cli-spinner": "0.2.10",
     "request": "2.88.0",
-    "request-promise-native": "1.0.7"
+    "request-promise-native": "1.0.7",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "ajv": "6.10.2",
@@ -70,5 +73,6 @@
         ]
       }
     }
-  }
+  },
+  "snyk": true
 }
