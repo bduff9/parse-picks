@@ -1,6 +1,6 @@
 import Spinner from 'cli-spinner';
 
-export const getSpinner = () => {
+export const getSpinner = (): Spinner.Spinner => {
 	const spinner = new Spinner.Spinner();
 
 	spinner.setSpinnerString(26);

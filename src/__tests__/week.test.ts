@@ -3,11 +3,14 @@ import mockConsole from 'jest-mock-console';
 
 import { getWeek, parseWeekFromText } from '../week';
 
-describe('getWeek', () => {
-	it('calls each', () => {
+describe('getWeek', (): void => {
+	it('calls each', (): void => {
 		const restoreConsole = mockConsole();
 		const each = jest.fn();
-		const $ = selector => ({ each });
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		//@ts-ignore
+		const $: cheerio.Root = (): cheerio.Cheerio =>
+			(({ each } as unknown) as cheerio.Cheerio);
 
 		getWeek($);
 
@@ -16,7 +19,7 @@ describe('getWeek', () => {
 		restoreConsole();
 	});
 
-	it('returns 0', () => {
+	it('returns 0', (): void => {
 		const restoreConsole = mockConsole();
 		const $ = cheerio.load('');
 
@@ -25,7 +28,7 @@ describe('getWeek', () => {
 		restoreConsole();
 	});
 
-	it('returns 3', () => {
+	it('returns 3', (): void => {
 		const $ = cheerio.load(`
 <table>
 	<tr>
@@ -45,12 +48,12 @@ describe('getWeek', () => {
 	});
 });
 
-describe('parseWeekFromText', () => {
-	it('returns 0 when no text given', () => {
+describe('parseWeekFromText', (): void => {
+	it('returns 0 when no text given', (): void => {
 		expect(parseWeekFromText('')).toEqual(0);
 	});
 
-	it('returns 1 for valid week 1', () => {
+	it('returns 1 for valid week 1', (): void => {
 		expect(parseWeekFromText('This is Wk.1 of the season')).toEqual(1);
 	});
 });

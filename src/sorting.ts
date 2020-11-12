@@ -1,4 +1,4 @@
-import { TTeam } from "./picks";
+import { TTeam } from './picks';
 
 export const sortPicks = (teamA: TTeam, teamB: TTeam): -1 | 0 | 1 => {
 	const { picked: pickedA, average: averageA } = teamA;

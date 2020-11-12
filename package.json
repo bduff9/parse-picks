@@ -8,8 +8,8 @@
     "url": "git@github.com:bduff9/parse-picks.git"
   },
   "scripts": {
-    "coverage": "jest --collectCoverageFrom=src/**.mjs --coverage src",
-    "lint": "eslint --fix \"**/*.mjs\"",
+    "coverage": "jest --collectCoverageFrom=src/**.ts --coverage src",
+    "lint": "eslint --fix \"**/*.ts\"",
     "setup": "npx typesync && npm i && npm prune",
     "start": "ts-node src/index.ts",
     "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
@@ -42,40 +42,15 @@
   },
   "jest": {
     "testMatch": [
-      "**/__tests__/**/*.?(m)js?(x)",
-      "**/?(*.)(spec|test).?(m)js?(x)"
+      "**/__tests__/**/*.ts?(x)",
+      "**/?(*.)(spec|test).ts"
     ],
     "moduleFileExtensions": [
       "js",
-      "json",
-      "jsx",
-      "node",
-      "mjs"
+      "ts"
     ],
     "transform": {
-      "^.+\\.m?js$": "babel-jest"
-    }
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          [
-            "env",
-            {
-              "modules": false
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "transform-es2015-modules-commonjs",
-            {
-              "spec": true
-            }
-          ]
-        ]
-      }
+      "^.+\\.ts$": "ts-jest"
     }
   }
 }

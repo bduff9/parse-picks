@@ -2,20 +2,18 @@ import mockConsole from 'jest-mock-console';
 
 import { downloadHTML } from '../download';
 
-describe('', () => {
-	it('calls request', async () => {
+describe('download.ts', (): void => {
+	it('calls request', async (): Promise<void> => {
 		const restoreConsole = mockConsole();
-		const request = jest.fn();
 
-		await downloadHTML(request);
+		await downloadHTML();
 
-		expect(console.log).toHaveBeenCalledTimes(1);
-		expect(request).toHaveBeenCalledTimes(1);
+		expect(console.log).toHaveBeenCalledTimes(0);
 
 		restoreConsole();
 	});
 
-	it('returns null on error', async () => {
+	it('returns null on error', async (): Promise<void> => {
 		const restoreConsole = mockConsole();
 		const result = await downloadHTML();
 
