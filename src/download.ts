@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 
 import { getSpinner, PICK_URL, PICK_URL_OPTS } from './constants';
 
-export const downloadHTML = async (): Promise<CheerioStatic | null> => {
+export const downloadHTML = async (): Promise<cheerio.Root | null> => {
 	const spinner = getSpinner();
 
 	spinner.setSpinnerTitle('Downloading HTML... %s');

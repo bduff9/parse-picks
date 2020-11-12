@@ -1,6 +1,6 @@
-import { WEEK_REGEX } from './constants.mjs';
+import { WEEK_REGEX } from './constants';
 
-export const getWeek = ($: CheerioStatic): number => {
+export const getWeek = ($: cheerio.Root): number => {
 	let week = 0;
 
 	$('td').each((_, el): false | void => {

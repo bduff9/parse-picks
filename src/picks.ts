@@ -19,7 +19,7 @@ export type TParsedPicks = {
 	week: number;
 };
 
-export const parsePicks = ($: CheerioStatic): TParsedPicks => {
+export const parsePicks = ($: cheerio.Root): TParsedPicks => {
 	const spinner = getSpinner();
 	const pickObj: TParsedPicks = {
 		allPicks: [],
@@ -29,14 +29,12 @@ export const parsePicks = ($: CheerioStatic): TParsedPicks => {
 		},
 		week: -1,
 	};
-	let week: number;
-	let allPicks: TTeam[];
 
 	if (!$) return pickObj;
 
 	spinner.setSpinnerTitle('Scraping HTML...');
 
-	week = getWeek($);
+	const week = getWeek($);
 
 	if (!week) {
 		spinner.stop(true);
@@ -46,7 +44,7 @@ export const parsePicks = ($: CheerioStatic): TParsedPicks => {
 
 	pickObj.week = week;
 
-	allPicks = getAllPicks($);
+	const allPicks = getAllPicks($);
 
 	if (allPicks.length === 0) {
 		spinner.stop(true);
@@ -63,7 +61,9 @@ export const parsePicks = ($: CheerioStatic): TParsedPicks => {
 	return pickObj;
 };
 
-export const parsePickFromText = (text: string): {
+export const parsePickFromText = (
+	text: string,
+): {
 	isPick: boolean;
 	points?: number;
 	team?: string;
@@ -81,7 +81,7 @@ export const parsePickFromText = (text: string): {
 	}
 };
 
-export const getAllPicks = ($: CheerioStatic) => {
+export const getAllPicks = ($: cheerio.Root): TTeam[] => {
 	const allPicks: TTeam[] = [];
 
 	$('div > table div > div > div').each((_, div): false | void => {
@@ -112,7 +112,12 @@ export const getAllPicks = ($: CheerioStatic) => {
 
 			// Otherwise add it
 			if (!found) {
-				const newTeam = { team, points: points || 0, picked: 1, average: points || 0 };
+				const newTeam = {
+					team,
+					points: points || 0,
+					picked: 1,
+					average: points || 0,
+				};
 
 				allPicks.push(newTeam);
 			}
@@ -129,9 +134,10 @@ export const getAllPicks = ($: CheerioStatic) => {
 export const getPeople = (allPicks: TTeam[]): number => {
 	const peopleCounts = allPicks.map(pickObj => pickObj.picked);
 
-	if (peopleCounts.length === 0) throw new Error('You must pass at least one pick');
+	if (peopleCounts.length === 0)
+		throw new Error('You must pass at least one pick');
 
-	return Math.max.apply(Math, peopleCounts);
+	return Math.max(...peopleCounts);
 };
 
 export const getPickCount = (allPicks: TTeam[]): number =>
@@ -142,7 +148,10 @@ export const getGameCount = ({ people, picks }: TPickMetadata): number => {
 
 	if (!picks) throw new Error('There must be at least 1 pick');
 
-	if (picks % people !== 0) throw new Error(`${picks} picks does not evenly divide by ${people} people`);
+	if (picks % people !== 0)
+		throw new Error(
+			`${picks} picks does not evenly divide by ${people} people`,
+		);
 
 	return picks / people;
 };
