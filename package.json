@@ -8,30 +8,37 @@
     "url": "git@github.com:bduff9/parse-picks.git"
   },
   "scripts": {
-    "lint": "eslint --fix \"**/*.mjs\"",
-    "start": "node --experimental-modules index.mjs",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "coverage": "jest --collectCoverageFrom=src/**.mjs --coverage src",
+    "lint": "eslint --fix \"**/*.mjs\"",
+    "setup": "npx typesync && npm i && npm prune",
+    "start": "ts-node src/index.ts",
+    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "watch": "jest --watchAll"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cheerio": "1.0.0-rc.2",
-    "cli-spinner": "^0.2.8",
-    "request": "2.88.0",
-    "request-promise-native": "1.0.5"
+    "axios": "0.20.0",
+    "cheerio": "1.0.0-rc.3",
+    "cli-spinner": "0.2.10",
+    "ts-node": "9.0.0"
   },
   "devDependencies": {
-    "ajv": "6.5.4",
-    "babel-core": "6.26.3",
-    "babel-jest": "23.6.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
-    "babel-preset-env": "1.7.0",
-    "coveralls": "3.0.2",
-    "eslint": "5.7.0",
-    "jest": "23.6.0",
-    "jest-mock-console": "0.4.0"
+    "@types/cheerio": "0.22.21",
+    "@types/cli-spinner": "0.2.0",
+    "@types/eslint": "7.2.2",
+    "@typescript-eslint/eslint-plugin": "4.1.0",
+    "@typescript-eslint/parser": "4.1.0",
+    "ajv": "6.12.4",
+    "coveralls": "3.1.0",
+    "eslint": "7.8.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-prettierx": "0.14.0",
+    "eslint-plugin-you-dont-need-momentjs": "1.6.0",
+    "jest": "26.4.2",
+    "jest-mock-console": "1.0.1",
+    "ts-jest": "26.3.0",
+    "typescript": "4.0.2"
   },
   "jest": {
     "testMatch": [

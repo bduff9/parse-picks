@@ -1,16 +1,17 @@
 import { LINE_SEP } from './constants';
+import { TParsedPicks } from './picks';
 
-export const padValue = (value, length, padFront = false, padChar = ' ') => {
-	value = value.toString();
+export const padValue = (value: unknown, length: number, padFront = false, padChar = ' '): string => {
+	const stringValue = `${value}`;
 
-	if (padFront) return value.padStart(length, padChar);
+	if (padFront) return stringValue.padStart(length, padChar);
 
-	return value.padEnd(length, padChar);
+	return stringValue.padEnd(length, padChar);
 };
 
-export const renderOutput = ({ allPicks, metadata, week }) => {
+export const renderOutput = ({ allPicks, metadata, week }: TParsedPicks): void => {
 	const { gameCt, people, picks } = metadata;
-	let currentGame = gameCt;
+	let currentGame = gameCt || 0;
 
 	console.log(LINE_SEP);
 	console.log(`${picks} total picks (by ${people} people) in week ${week} for ${gameCt} total games`);

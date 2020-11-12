@@ -1,9 +1,9 @@
 import { WEEK_REGEX } from './constants';
 
-export const getWeek = $ => {
+export const getWeek = ($: CheerioStatic): number => {
 	let week = 0;
 
-	$('td').each((i, el) => {
+	$('td').each((_, el): false | void => {
 		const $td = $(el);
 
 		if ($td.find('td').length) return;
@@ -18,7 +18,7 @@ export const getWeek = $ => {
 	return week;
 };
 
-export const parseWeekFromText = text => {
+export const parseWeekFromText = (text: string): number => {
 	const weekResult = WEEK_REGEX.exec(text);
 
 	if (weekResult) return parseInt(weekResult[1], 10);
