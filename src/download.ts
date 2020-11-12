@@ -1,7 +1,7 @@
 import axios from 'axios';
+import cheerio from 'cheerio';
 
 import { getSpinner, PICK_URL, PICK_URL_OPTS } from './constants';
-import cheerio from 'cheerio';
 
 export const downloadHTML = async (): Promise<CheerioStatic | null> => {
 	const spinner = getSpinner();
