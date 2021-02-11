@@ -29,7 +29,7 @@
     "@types/eslint": "7.2.4",
     "@typescript-eslint/eslint-plugin": "4.7.0",
     "@typescript-eslint/parser": "4.7.0",
-    "ajv": "6.12.6",
+    "ajv": "7.1.0",
     "coveralls": "3.1.0",
     "eslint": "7.13.0",
     "eslint-plugin-import": "2.22.1",
